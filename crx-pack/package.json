@@ -1,0 +1,13 @@
+{
+  "name": "crx-pack",
+  "version": "1.0.0",
+  "description": "手写webpack",
+  "main": "index.js",
+  "bin": {
+    "crx-pack": "bin/crx-pack.js"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

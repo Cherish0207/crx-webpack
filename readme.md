@@ -11,3 +11,14 @@
 - 自己实现了一个 require 方法,默认引用主文件 src/index.js,
 - 在执行的时候传入一个 modules 对象,key 是当前文件的相对路径,value 是文件的代码块
 - 通过 eval 执行代码块,执行时如果代码块里面再有 require,就去依次执行加载
+
+## npm link
+
+```bash
+cd crx-pack
+npm link
+
+cd crx-webpack-dev
+npm link crx-pack
+npx crx-pack
+```
