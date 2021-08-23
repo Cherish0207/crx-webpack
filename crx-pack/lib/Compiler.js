@@ -4,7 +4,7 @@ const babylon = require('babylon');
 const t = require('@babel/types');
 const traverse = require('@babel/traverse').default;
 const generator = require('@babel/generator').default;
-
+const ejs = require('ejs');
 class Compile {
   constructor(config) {
     this.config = config;
@@ -61,7 +61,18 @@ class Compile {
     return { sourceCode, dependencies };
   }
   // 发射打包后的文件
-  emitFile() {}
+  emitFile() {
+    // 输出目录
+    let main = path.join(this.config.output.path, this.config.output.filename);
+    let templateStr = this.getSource(path.join(__dirname, 'main.ejs'));
+    let code = ejs.render(templateStr, {
+      entryId: this.entryId,
+      modules: this.modules,
+    });
+    this.assets = {};
+    this.assets[main] = code;
+    fs.writeFileSync(main, this.assets[main]);
+  }
   getSource(modulePath) {
     return fs.readFileSync(modulePath, 'utf8');
   }

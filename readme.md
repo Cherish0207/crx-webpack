@@ -23,12 +23,21 @@ npm link crx-pack
 npx crx-pack
 ```
 
-## ast解析
+## ast 解析
 
 babylon: 把源码转换成 ast
 @babel/traverse:遍历对应节点
 @babel/types:把遍历好的节点替换一下
 @babel/generator:生成遍历好的结果
+
 ```bash
 cd crx-pack
 npm i babylon @babel/traverse @babel/types @babel/generator -D
+```
+
+### ejs 生成打包结果
+
+```bash
+cd crx-pack
+npm i ejs -D
+```

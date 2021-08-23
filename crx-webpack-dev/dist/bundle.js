@@ -1,23 +1,31 @@
 (() => {
   var modules = {
-    "./src/a.js": (module, exports, require) => {
+    
+      "./src/index.js": (module, exports, __webpack_require__) => {
       eval(
-        'let b = require( "./src/base/b.js");\nmodule.exports = "hello " + b;\n\n\n//# sourceURL=webpack://crx-webpack/./src/a.js?'
+        `let str = __webpack_require__("./src/a.js");
+
+console.log(str);`
       );
     },
-    "./src/base/b.js": (module) => {
+    
+      "./src/a.js": (module, exports, __webpack_require__) => {
       eval(
-        'module.exports = "world";\n\n\n//# sourceURL=webpack://crx-webpack/./src/base/b.js?'
+        `let b = __webpack_require__("./src/base/b.js");
+
+module.exports = "hello " + b;`
       );
     },
-    "./src/index.js": (module, exports, require) => {
+    
+      "./src/base/b.js": (module, exports, __webpack_require__) => {
       eval(
-        'let str = require( "./src/a.js");\nconsole.log(str);\n\n\n//# sourceURL=webpack://crx-webpack/./src/index.js?'
+        `module.exports = "world";`
       );
     },
+    
   };
   var cache = {};
-  function require(moduleId) {
+  function __webpack_require__(moduleId) {
     var cachedModule = cache[moduleId];
     if (cachedModule !== undefined) {
       return cachedModule.exports;
@@ -25,8 +33,8 @@
     var module = (cache[moduleId] = {
       exports: {},
     });
-    modules[moduleId](module, module.exports, require);
+    modules[moduleId](module, module.exports, __webpack_require__);
     return module.exports;
   }
-  var exports = require("./src/index.js");
+  var exports = __webpack_require__("./src/index.js");
 })();
