@@ -9,5 +9,11 @@
   "scripts": {},
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/generator": "^7.15.0",
+    "@babel/traverse": "^7.15.0",
+    "@babel/types": "^7.15.0",
+    "babylon": "^6.18.0"
+  }
 }
