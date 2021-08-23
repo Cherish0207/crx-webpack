@@ -74,7 +74,23 @@ class Compile {
     fs.writeFileSync(main, this.assets[main]);
   }
   getSource(modulePath) {
-    return fs.readFileSync(modulePath, 'utf8');
+    let content = fs.readFileSync(modulePath, 'utf8');
+    let rules = this.config.module.rules;
+    for (let i = 0; i < rules.length; i++) {
+      const { test, use } = rules[i];
+      let len = use.length - 1;
+      if (test.test(modulePath)) {
+        function normalLoader() {
+          let loader = require(use[len--]);
+          content = loader(content);
+          if (len >= 0) {
+            normalLoader();
+          }
+        }
+        normalLoader();
+      }
+    }
+    return content;
   }
 }
 module.exports = Compile;

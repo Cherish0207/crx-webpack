@@ -41,3 +41,25 @@ npm i babylon @babel/traverse @babel/types @babel/generator -D
 cd crx-pack
 npm i ejs -D
 ```
+
+## loader
+
+webpack 只能处理 Javascript 的模块,\
+如果要要处理其他类型的文件,需要使用 loader 进行转换。\
+loader 是 webpack 一个重要的概念,指用来将一段代码转換成另一段代码的 webpack 加载器。
+
+写一个简单的 loader\
+在根目录下创建 loaders 文件夹,增加 loader 文件,
+loaders 就是一个函数,参数是匹配到文件的内容,返回结果会作为最新的内容
+
+```bash
+cd crx-webpack-dev
+npm i less -D
+```
+
+loader 的载入方式\
+1.直接写成绝对路径\
+2.可以配置别名\
+3.配置 resolveLoader 的 modules \
+4.可以直接放在 node_modules 中 \
+5.npm link 的方式\

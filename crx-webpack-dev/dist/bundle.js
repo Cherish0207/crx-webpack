@@ -5,6 +5,8 @@
       eval(
         `let str = __webpack_require__("./src/a.js");
 
+__webpack_require__("./src/index.less");
+
 console.log(str);`
       );
     },
@@ -20,6 +22,14 @@ module.exports = "hello " + b;`
       "./src/base/b.js": (module, exports, __webpack_require__) => {
       eval(
         `module.exports = "world";`
+      );
+    },
+    
+      "./src/index.less": (module, exports, __webpack_require__) => {
+      eval(
+        `let style = document.createElement('style');
+style.innerHTML = "body {\\n  background-color: skyblue;\\n}\\n";
+document.head.appendChild(style);`
       );
     },
     
