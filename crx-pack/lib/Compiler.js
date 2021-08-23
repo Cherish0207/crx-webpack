@@ -15,6 +15,8 @@ class Compile {
   }
   run() {
     this.buildModule(path.resolve(this.root, this.entry), true);
+    console.log('this.modules:', this.modules);
+    console.log('this.entryId:', this.entryId);
     this.emitFile();
   }
   /**
@@ -32,8 +34,11 @@ class Compile {
       source,
       path.dirname(relativePath)
     );
-    console.log('sourceCode---', sourceCode, dependencies);
     this.modules[relativePath] = sourceCode;
+    // 副模块递归加载
+    dependencies.forEach((dep) => {
+      this.buildModule(path.resolve(this.root, dep), false);
+    });
   }
   // 解析源码 使用AST解析语法树,进行源码的转译
   parse(source, parentPath) {
