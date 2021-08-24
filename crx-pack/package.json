@@ -16,5 +16,8 @@
     "@babel/types": "^7.15.0",
     "babylon": "^6.18.0",
     "ejs": "^3.1.6"
+  },
+  "dependencies": {
+    "tapable": "^2.2.0"
   }
 }

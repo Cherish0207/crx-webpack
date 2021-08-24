@@ -5,6 +5,7 @@ const t = require('@babel/types');
 const traverse = require('@babel/traverse').default;
 const generator = require('@babel/generator').default;
 const ejs = require('ejs');
+const { SyncHook } = require('tapable');
 class Compile {
   constructor(config) {
     this.config = config;
@@ -12,12 +13,33 @@ class Compile {
     this.modules = {}; // 保存所有的模块依赖
     this.entry = config.entry;
     this.root = process.cwd();
+    this.hooks = {
+      entryOption: new SyncHook(),
+      compile: new SyncHook(),
+      afterCompile: new SyncHook(),
+      afterPlugins: new SyncHook(),
+      run: new SyncHook(),
+      emit: new SyncHook(),
+      done: new SyncHook(),
+    };
+    let plugins = this.config.plugins
+    if(Array.isArray(plugins)) {
+      plugins.forEach(plugin=>{
+        plugin.apply(this)
+      })
+    }
+    this.hooks.afterPlugins.call();
   }
   run() {
+    this.hooks.run.call();
+    this.hooks.compile.call();
     this.buildModule(path.resolve(this.root, this.entry), true);
-    console.log('this.modules:', this.modules);
-    console.log('this.entryId:', this.entryId);
+    this.hooks.afterCompile.call();
+    // console.log('this.modules:', this.modules);
+    // console.log('this.entryId:', this.entryId);
     this.emitFile();
+    this.hooks.emit.call();
+    this.hooks.done.call();
   }
   /**
    * 执行并创建模块依赖关系

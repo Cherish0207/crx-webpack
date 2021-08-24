@@ -63,3 +63,10 @@ loader 的载入方式\
 3.配置 resolveLoader 的 modules \
 4.可以直接放在 node_modules 中 \
 5.npm link 的方式\
+
+## 插件
+
+```bash
+cd crx-pack
+npm i tapable
+```
