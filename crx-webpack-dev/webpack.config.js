@@ -25,7 +25,16 @@ module.exports = {
     rules: [
       {
         test: /\.less$/,
-        use: ["style-loader", "less-loader"],
+        use: {
+          loader: "less-loader",
+        },
+      },
+      {
+        test: /\.less$/,
+        use: {
+          loader: "style-loader",
+        },
+        enforce: "post", // post
       },
     ],
   },

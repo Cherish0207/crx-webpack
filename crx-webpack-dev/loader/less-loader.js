@@ -1,5 +1,6 @@
 const less = require("less");
 function loader(source) {
+  console.log('less');
   let css = "";
   less.render(source, function (err, c) {
     css = c.css;

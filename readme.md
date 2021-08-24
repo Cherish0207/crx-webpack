@@ -64,6 +64,15 @@ loader 的载入方式\
 4.可以直接放在 node_modules 中 \
 5.npm link 的方式\
 
+配置多个 loader 的默认执行顺序是:从下到上,从右向左\
+
+loader 的分类
+前置 loader:pre
+普通 loader:normal
+后置 loader: post
+
+loader 的顺序:pre+normal+inline +post
+
 ## 插件
 
 ```bash
