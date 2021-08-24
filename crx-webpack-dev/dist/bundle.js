@@ -9,33 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.less":
-/*!************************!*\
-  !*** ./src/index.less ***!
-  \************************/
+/***/ "./loader/inline-loader.js!./src/index.less":
+/*!**************************************************!*\
+  !*** ./loader/inline-loader.js!./src/index.less ***!
+  \**************************************************/
 /***/ (() => {
 
-eval("\n  let style = document.createElement('style')\n  style.innerHTML = \"body {\\\\n  background-color: skyblue;\\\\n}\\\\n\"\n  document.head.appendChild(style);\n\n//# sourceURL=webpack://crx-webpack-dev/./src/index.less?");
-
-/***/ }),
-
-/***/ "./src/a.js":
-/*!******************!*\
-  !*** ./src/a.js ***!
-  \******************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-eval("let b = __webpack_require__(/*! ./base/b.js */ \"./src/base/b.js\");\nmodule.exports = \"hello \" + b;\n\n\n//# sourceURL=webpack://crx-webpack-dev/./src/a.js?");
-
-/***/ }),
-
-/***/ "./src/base/b.js":
-/*!***********************!*\
-  !*** ./src/base/b.js ***!
-  \***********************/
-/***/ ((module) => {
-
-eval("module.exports = \"world\";\n\n\n//# sourceURL=webpack://crx-webpack-dev/./src/base/b.js?");
+eval("\n  let style = document.createElement('style')\n  style.innerHTML = \"body {\\\\n  background-color: skyblue;\\\\n}\\\\n\"\n  document.head.appendChild(style);\n\n//# sourceURL=webpack://crx-webpack-dev/./src/index.less?./loader/inline-loader.js");
 
 /***/ }),
 
@@ -45,7 +25,7 @@ eval("module.exports = \"world\";\n\n\n//# sourceURL=webpack://crx-webpack-dev/.
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("let str = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n__webpack_require__(/*! ./index.less */ \"./src/index.less\");\nconsole.log(str);\n\n\n//# sourceURL=webpack://crx-webpack-dev/./src/index.js?");
+eval("// let str = require(\"./a.js\");\n__webpack_require__(/*! inline-loader!./index.less */ \"./loader/inline-loader.js!./src/index.less\");\nconsole.log(str);\n\n\n//# sourceURL=webpack://crx-webpack-dev/./src/index.js?");
 
 /***/ })
 

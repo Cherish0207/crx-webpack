@@ -70,8 +70,13 @@ loader 的分类
 前置 loader:pre
 普通 loader:normal
 后置 loader: post
+inlineloader
 
 loader 的顺序:pre+normal+inline +post
+
+-!: 禁用前置和正常 loader, 不会让文件再去通过 pre+normal loader 来处理了
+!: 禁用普通 loader
+!!: 禁用前置和后置和正常 loader,什么都不要,只需要行内
 
 ## 插件
 

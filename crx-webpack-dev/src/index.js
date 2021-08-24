@@ -1,3 +1,3 @@
-let str = require("./a.js");
-require("./index.less");
+// let str = require("./a.js");
+require("inline-loader!./index.less");
 console.log(str);
